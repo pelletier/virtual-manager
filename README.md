@@ -5,7 +5,7 @@ Vagrant-powered virtual machines. It allows you to automatically assign a name
 and an host-only IP address to each of your VMs, so as you can easily access
 them from your other programs.
 
-# Quick start
+## Quick start
 
     hg clone https://bitbucket.org/pelletier/virtual-manager
     python virtual-manager/virtual-manage.py
@@ -25,11 +25,11 @@ Thus you can, from anywhere use virtual-manager:
     * Python 2.6 or 2.7.
     * Vagrant and VirtualBox.
 
-# List of commands
+## List of commands
 
 Please run `python virtual-manager.py` without arguments.
 
-# Configuration
+## Configuration
 
 The configuration is stored in `~/.vm.cfg` in the INI format (as parsed by
 [ConfigParser](http://docs.python.org/library/configparser.html)). Here is an
