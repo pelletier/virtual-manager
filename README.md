@@ -19,7 +19,7 @@ Thus you can, from anywhere use virtual-manager:
     $ cd ~/foo/bar
     $ vm list
 
-# Requirements
+## Requirements
 
     * A Linux or Unix box.
     * Python 2.6 or 2.7.
