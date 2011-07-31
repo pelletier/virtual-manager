@@ -11,8 +11,8 @@ import sys
 import inspect
 from subprocess import call
 from string import Template
-from os import path, mkdir, remove
 from ConfigParser import SafeConfigParser
+from os import path, mkdir, remove, chdir
 
 
 # With statements ************************************************* {{{
@@ -351,6 +351,21 @@ def add(name, base):
 
     print "Virtual machine successfully created"
     return 0
+
+@cli.register()
+def cd(name):
+    """Change the current working directory to the VM path."""
+    # Check that the machine exists.
+    with nostdout():
+        vms = list_virtual_machines()
+    if not name in vms:
+        print "VM %s does not exist."
+        list_virtual_machines()
+        return -1
+
+    vmp = vm_path(name)
+    chdir(vmp)
+    return vmp
 # }}}
 
 

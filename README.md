@@ -12,7 +12,7 @@ them from your other programs.
 
 However, you can add an alias to your `.bash_profile` such as:
 
-    alias vm='python ~/path/to/virtual-manager.py'
+    alias vm='python ~/path/to/virtual_manager.py'
 
 Thus you can, from anywhere use virtual-manager:
 
@@ -27,7 +27,7 @@ Thus you can, from anywhere use virtual-manager:
 
 ## List of commands
 
-Please run `python virtual-manager.py` without arguments.
+Please run `python virtual_manager.py` without arguments.
 
 ## Configuration
 
