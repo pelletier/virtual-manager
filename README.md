@@ -8,26 +8,19 @@ them from your other programs.
 ## Quick start
 
     hg clone https://bitbucket.org/pelletier/virtual-manager
-    python virtual-manager/virtual-manage.py
+    echo "source ~/path/to/virtual-manager/vm.sh" >> ~/.bash_profile
 
-However, you can add an alias to your `.bash_profile` such as:
+Source your `bash_profile` or start a new shell, then :
 
-    alias vm='python ~/path/to/virtual_manager.py'
+    vm
 
-Thus you can, from anywhere use virtual-manager:
-
-    $ cd ~/foo/bar
-    $ vm list
+This will show the list of the commands.
 
 ## Requirements
 
     * A Linux or Unix box.
     * Python 2.6 or 2.7.
     * Vagrant and VirtualBox.
-
-## List of commands
-
-Please run `python virtual_manager.py` without arguments.
 
 ## Configuration
 
