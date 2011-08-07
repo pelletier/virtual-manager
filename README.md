@@ -5,6 +5,9 @@ Vagrant-powered virtual machines. It allows you to automatically assign a name
 and an host-only IP address to each of your VMs, so as you can easily access
 them from your other programs.
 
+You can watch the [demo video](http://vimeo.com/27112588) (revision 5 of
+virtual-manager).
+
 ## Quick start
 
     hg clone https://bitbucket.org/pelletier/virtual-manager
