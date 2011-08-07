@@ -1,9 +1,8 @@
 from config import config
-from string import Template
 from subprocess import call
 from os import path, makedirs
 from cli import cli
-from utils import nostdout, update_hostfile
+from utils import nostdout, update_hostfile, normalize, render_template
 
 
 
@@ -44,7 +43,7 @@ def register_vagrant_wrap(cli, command, command_name=None):
         return 0
 
 # Register built-in Vagrant commands to the CLI.
-for name in ["up", "halt", "ssh"]:
+for name in ["up", "halt", "ssh", "reload"]:
     register_vagrant_wrap(cli, name)
 
 
@@ -66,7 +65,7 @@ def vm_remove(name):
     with nostdout():
         vms = list_virtual_machines()
     if not name in vms:
-        print "VM %s does not exist."
+        print "VM %s does not exist." % name
         list_virtual_machines()
         return -1
 
@@ -91,7 +90,7 @@ def vm_remove(name):
 def add(name, base):
     """Create and register a new virtual machine."""
     # Normalize the name of the VM
-    name = name.lower().replace(' ', "_")
+    name = normalize(name)
 
     # Check for doubles
     with nostdout():
@@ -134,20 +133,12 @@ def add(name, base):
 
     # Create the directory.
     vagrant_dir = vm_path(name)
-    makedirs(vagrant_dir)
+    makedirs(path.join(vagrant_dir, 'link'))
 
     # Grab the default vagrant file.
     vagrant_template_path = config.core.get("core", "vagrant_template")
-    vagrant_template_descr = open(path.expanduser(vagrant_template_path), 'r')
-    vagrant_template = Template(vagrant_template_descr.read())
-    vagrant_template_descr.close()
-
-    # Write the new one.
-    vagrant_content = vagrant_template.substitute(mapping)
     vagrant_final_path = path.join(vagrant_dir, "Vagrantfile")
-    vagrant_descr = open(vagrant_final_path, 'w')
-    vagrant_descr.write(vagrant_content)
-    vagrant_descr.close()
+    render_template(vagrant_template_path, mapping, vagrant_final_path)
 
     # Create the configuration file.
     config.vms.add_section(name)

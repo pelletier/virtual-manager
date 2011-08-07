@@ -1,6 +1,5 @@
 from os import path
-from ConfigParser import SafeConfigParser
-
+from ConfigParser import SafeConfigParser, NoOptionError
 
 class ConfigItem(SafeConfigParser):
     
@@ -35,14 +34,18 @@ class Config(object):
         setattr(self, name, ci)
 
 
+def path_for(name):
+    return path.join(path.dirname(path.abspath(__file__)), name)
+
 
 config = Config()
 
 config.register('core', initial_sections=['core'], defaults={
-    'vms_path'        : "~/.vm.d/machines",
-    'base_ip'         : "33.33.33.",
-    'vagrant_template': path.join(path.dirname(path.abspath(__file__)),\
-                                  'Vagrantfile'),
+    'vms_path'              : "~/.vm.d/machines",
+    'base_ip'               : "33.33.33.",
+    'vagrant_template'      : path_for('templates/Vagrantfile'),
+    'provisions_path'       : "~/.vm.d/provisions",
+    'provisioners_templates': path_for('templates/provisioners/')
 })
 config.register('provisions')
 config.register('vms', defaults={

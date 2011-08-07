@@ -1,6 +1,7 @@
 import sys
+from os import remove, path
 from subprocess import call
-from os import remove
+from string import Template
 
 
 class nostdout:
@@ -42,3 +43,22 @@ def update_hostfile(ip, append=[]):
     call('sudo cp /tmp/hosts_final /etc/hosts', shell=True)
     call('sudo touch /etc/hosts', shell=True)
     remove('/tmp/hosts_final')
+
+
+def normalize(string):
+    return string.lower().replace(' ', "_")
+
+
+def render_template(template_path, data={}, output=None):
+    descr = open(path.expanduser(template_path), 'r')
+    template = Template(descr.read())
+    descr.close()
+
+    content = template.substitute(data)
+
+    if not output == None:
+        descr = open(output, 'w')
+        descr.write(content)
+        descr.close()
+
+    return content

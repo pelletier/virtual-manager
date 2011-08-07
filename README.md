@@ -16,7 +16,7 @@ Source your `bash_profile` or start a new shell, then :
 
 This will show the list of the commands.
 
-# For non-BASH shells
+## For non-BASH shells
 
 I use a trick which only works on bash to guess the path of`virtual-manager`
 directory. If you are using another shell (such as ZSH), you have to set the
@@ -48,3 +48,56 @@ example configuration file:
 Each created box has its own section, with only this IP inside (for now). The
 core section describes the behavior of the script. It's structure is very
 straightforward.
+
+## Provisions
+
+Revision 7 brought the support of provisions. It allows you to automatically
+provision your VM when you load it. Here is an example shell session to deal
+with provisioning using virtual-manager:
+
+    $ vm
+    Use one of the following commands:
+        * add name base
+        * add_provision name type source provisioner
+        * bind_provision name vm_name
+        * cd name
+        * halt name
+        * list
+        * provisions_list
+        * reload name
+        * remove name
+        * remove_provision name
+        * ssh name
+        * unbind_provision vm_name
+        * up name
+
+    $ vm add_provision baseprov link /Users/thomas/code/base-provision puppet
+    New provision registered.
+
+    $ vm provisions_list
+    Available provisions:
+        * baseprov
+
+    $ vm add foo lucid32
+    Password for sudo?
+    [...]
+    Virtual machine successfully created
+
+    $ vm bind_provision baseprov foo
+    Provision baseprov bound to foo.
+
+    $ vm reload foo
+    [default] Attempting graceful shutdown of linux.
+    [...]
+
+    $ vm unbind_provision foo
+    Provision unbound from foo.
+
+    $ vm remove foo
+    [default] Forcing shutdown of VM...
+    [...]
+    Virtual machine removed.
+
+    $ vm remove_provision baseprov
+    Provision removed.
+
