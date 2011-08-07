@@ -5,7 +5,8 @@ allows you to move to the directory of a VM.
 """
 
 import sys
-from virtual_manager import cd, nostdout
+from vms import cd
+from utils import nostdout
 
 try:
     name = sys.argv[1]
