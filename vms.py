@@ -33,7 +33,7 @@ def register_vagrant_wrap(cli, command, command_name=None):
             vms = list_virtual_machines()
 
         if not name in vms:
-            print "VM %s does not exist."
+            print "VM %s does not exist." % name
             list_virtual_machines()
             return -1
 
