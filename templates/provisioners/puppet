@@ -1,0 +1,7 @@
+# VM:PROVISIONER:START
+  config.vm.provision :puppet do |puppet|
+    puppet.manifests_path = "puppet/manifests"
+    puppet.module_path = "puppet/modules"
+    puppet.manifest_file = "initbox.pp"
+  end
+# VM:PROVISIONER:STOP
