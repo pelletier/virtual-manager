@@ -2,8 +2,10 @@
 ## If you source it, it will create a custom `vm` function to wrap both the
 ## Python script and the `vmcd` hack
 
-# This is where the current script is.
-VM_DIR=$(dirname "${BASH_SOURCE[0]}")
+# If VM_DIR is not already set, try to guess the path of the current file.
+if [ "1${VM_DIR}" = "1" ]
+    then VM_DIR=$(dirname "${BASH_SOURCE[0]}")
+fi
 
 function _vmcd {
     VM_P=$(python "$VM_DIR/vm_cd.py" "$1")

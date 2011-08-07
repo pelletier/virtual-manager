@@ -16,6 +16,15 @@ Source your `bash_profile` or start a new shell, then :
 
 This will show the list of the commands.
 
+# For non-BASH shells
+
+I use a trick which only works on bash to guess the path of`virtual-manager`
+directory. If you are using another shell (such as ZSH), you have to set the
+`$VM_DIR` variable before sourcing the file:
+
+    export VM_DIR="/path/to/virtual-manager/"
+    source "$VM_DIR/vm.sh"
+
 ## Requirements
 
     * A Linux or Unix box.
