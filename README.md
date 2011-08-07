@@ -30,9 +30,9 @@ directory. If you are using another shell (such as ZSH), you have to set the
 
 ## Requirements
 
-    * A Linux or Unix box.
-    * Python 2.6 or 2.7.
-    * Vagrant and VirtualBox.
+ * A Linux or Unix box.
+ * Python 2.6 or 2.7.
+ * Vagrant and VirtualBox.
 
 ## Configuration
 
