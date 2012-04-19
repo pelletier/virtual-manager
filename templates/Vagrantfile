@@ -1,6 +1,6 @@
 Vagrant::Config.run do |config|
   config.vm.box = "$base"
-  config.vm.network "$ip"
+  config.vm.network :hostonly, "$ip"
   config.vm.share_folder "link", "/link", "./link"
 # VM:PROVISIONER
 end
